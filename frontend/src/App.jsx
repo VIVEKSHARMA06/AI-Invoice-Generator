@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import AppShell from "./components/Appshell";
+import AppShell from "./components/AppShell.jsx";
 import Dashboard from "./pages/Dashboard";
 import { Show, RedirectToSignIn } from "@clerk/react";
 
