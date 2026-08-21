@@ -1,4 +1,4 @@
-import { React, useCallback, useState } from "react";
+import { React, useCallback, useState, useEffect, useMemo } from "react";
 import { dashboardStyles } from "../assets/dummyStyles";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/react";
@@ -345,7 +345,47 @@ const Dashboard = () => {
         const payload = invRow;
         navigate(`/app/invoices/${invRow.id}`, { state: { invoice: payload } });
     }
-    return <div>Dashboard</div>;
+    return (
+        <div className={dashboardStyles.pageContainer}>
+            <div className={dashboardStyles.headerContainer}>
+                <h1 className={dashboardStyles.headerTitle}>
+                    Dashboard Overview
+                </h1>
+                <p className={dashboardStyles.headerSubtitle}>
+                    Track your invoicing performance and business insights
+                </p>
+            </div>
+
+            {/* LOADING ERROR STATE */}
+            {loading ? (
+                <div className="p-6">Loading invoices...</div>
+            ) : error ? (
+                <div className="p-6">
+                    <div className="text-red-600 mb-3">Error: {error}</div>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={fetchInvoices}
+                            className="px-3 py-1 bg-blue-600 text-white rounded"
+                        >
+                            Retry
+                        </button>
+                        {String(error)
+                            .toLowerCase()
+                            .includes("unauthorized") && (
+                            <button
+                                onClick={() => navigate("/login")}
+                                className="px-3 py-1 bg-gray-700
+          text-white rounded"
+                            >
+                                Sign in
+                            </button>
+                        )}
+                    </div>
+                </div>
+            ) : null}
+            
+        </div>
+    );
 };
 
 export default Dashboard;

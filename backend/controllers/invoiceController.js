@@ -246,12 +246,12 @@ export async function getInvoices(req, res) {
             ];
         }
         const invoices = await Invoice.find(q).sort({ createdAt: -1 }).lean();
-        return response.status(200).json({
+        return res.status(200).json({
             success: true,
             data: invoices,
         });
     } catch (err) {
-        cosole.error("getInvoices error:", err);
+        console.error("getInvoices error:", err);
         return res
             .status(500)
             .json({ success: false, message: "Server error" });
