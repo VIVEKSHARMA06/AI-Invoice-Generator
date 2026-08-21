@@ -2,6 +2,7 @@ import { React, useCallback, useState, useEffect, useMemo } from "react";
 import { dashboardStyles } from "../assets/dummyStyles";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/react";
+import KpiCard from "../components/KpiCard";
 
 const API_BASE = "http://localhost:4000";
 
@@ -383,7 +384,31 @@ const Dashboard = () => {
                     </div>
                 </div>
             ) : null}
-            
+            <div className={dashboardStyles.kpiGrid}>
+                <KpiCard
+                    title="Total Invoices"
+                    value={kpis.totalInvoices}
+                    hint="Active invoices"
+                    iconType="document"
+                    trend={8.5}
+                />
+
+                <KpiCard
+                    title="Total Paid"
+                    value={currencyFmt(kpis.totalPaid, "INR")}
+                    hint="Received amount (INR)"
+                    iconType="revenue"
+                    trend={12.2}
+                />
+
+                <KpiCard
+                    title="Total Unpaid"
+                    value={currencyFmt(kpis.totalUnpaid, "INR")}
+                    hint="Outstanding balance (INR)"
+                    iconType="clock"
+                    trend={-3.1}
+                />
+            </div>
         </div>
     );
 };
