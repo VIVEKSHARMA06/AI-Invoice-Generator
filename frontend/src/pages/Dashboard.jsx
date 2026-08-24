@@ -3,6 +3,7 @@ import { dashboardStyles } from "../assets/dummyStyles";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/react";
 import KpiCard from "../components/KpiCard";
+import StatusBadge from "../components/StatusBadge";
 
 const API_BASE = "http://localhost:4000";
 

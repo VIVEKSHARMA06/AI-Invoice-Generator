@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import AppShell from "./components/AppShell.jsx";
 import Dashboard from "./pages/Dashboard";
 import { Show, RedirectToSignIn } from "@clerk/react";
+import Createinvoice from "./pages/Createinvoice.jsx";
 
 const ClerkProtected = ({ children }) => (
     <>
@@ -30,6 +31,10 @@ const App = () => {
                 >
                     <Route index element={<Dashboard />} />
                     <Route path="dashboard" element={<Dashboard />} />
+                    <Route
+                        path="create-invoice"
+                        element={<Createinvoice />}
+                    ></Route>
                 </Route>
             </Routes>
         </div>
